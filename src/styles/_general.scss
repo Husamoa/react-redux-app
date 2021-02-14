@@ -5,14 +5,16 @@
 }
 
 /** add todo **/
-.add-todo {
-  margin-left: 0.5rem !important;
+.AddTodo {
+  .add-todo {
+    margin-left: 0.5rem !important;
+  }
 }
 
 /** todo list **/
 .todo-list {
   margin-top: 1rem;
-  text-align: left;
+  text-align: center;
   list-style: none;
 }
 
