@@ -1,3 +1,5 @@
+import {withMobileDialog} from "@material-ui/core";
+
 export default class Utils {
     static getClassName(baseName = null, prefix = null) {
         let className = "";
@@ -10,5 +12,13 @@ export default class Utils {
         }
 
         return className;
+    }
+
+    static getDataFromServer() {
+        fetch("http://localhost:9000/testAPI")
+            .then(res => res.text())
+            .then(res => {
+                return res;
+            });
     }
 }

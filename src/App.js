@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import AddTodo from "./components/AddTodo";
 import TodoList from "./components/TodoList";
 import VisibilityFilters from "./components/VisibilityFilters";
-import {Container, Grid} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import "./styles/App.scss";
+import Utils from "./app/Utils";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,9 +13,17 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center"
     },
 }));
+
 export default function App() {
     const classes = useStyles();
+    const [data, setData] = useState(null)
 
+    useEffect(() => {
+        fetch("http://localhost:9000/testAPI")
+            .then(res => res.text())
+            .then(res =>  setData(res));
+
+    }, []);
 
     return (
         <div className={classes.root}>
@@ -26,7 +35,7 @@ export default function App() {
                     <AddTodo/>
                 </Grid>
                 <Grid item xs={12}>
-                    <TodoList/>
+                    <TodoList data={data}/>
                 </Grid>
                 <Grid item xs={12}>
                     <VisibilityFilters/>
