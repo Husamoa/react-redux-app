@@ -5,9 +5,8 @@ import Todo from "./Todo";
 import { getTodosByVisibilityFilter } from "../redux/selectors";
 import { VISIBILITY_FILTERS } from "../constants";
 
-const TodoList = ({ todos, data }) => (
+const TodoList = ({ todos }) => (
     <ul className="todo-list">
-        {console.log(data)}
         {todos && todos.length
             ? todos.map((todo, index) => {
                 return <Todo key={`todo-${todo.id}`} todo={todo} />;

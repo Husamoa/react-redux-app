@@ -5,7 +5,7 @@ import VisibilityFilters from "./components/VisibilityFilters";
 import {Grid} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import "./styles/App.scss";
-import Utils from "./app/Utils";
+import {useFetch} from "./app/DataAPI.js"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,14 +16,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function App() {
     const classes = useStyles();
-    const [data, setData] = useState(null)
 
-    useEffect(() => {
-        fetch("http://localhost:9000/testAPI")
-            .then(res => res.text())
-            .then(res =>  setData(res));
-
-    }, []);
+    const query = 'testAPI'
+    const {status, data} = useFetch(query)
 
     return (
         <div className={classes.root}>
@@ -35,7 +30,7 @@ export default function App() {
                     <AddTodo/>
                 </Grid>
                 <Grid item xs={12}>
-                    <TodoList data={data}/>
+                    <TodoList/>
                 </Grid>
                 <Grid item xs={12}>
                     <VisibilityFilters/>
